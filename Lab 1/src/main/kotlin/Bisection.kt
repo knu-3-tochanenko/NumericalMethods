@@ -3,13 +3,13 @@ import kotlin.math.pow
 import kotlin.system.measureTimeMillis
 
 class Bisection(
-    var function: (x: Float) -> Float,
+    var function: (x: Double) -> Double,
     var numberOfDigits: Int
 ) {
-    private val precision: Float = 0.1f.pow(numberOfDigits)
+    private val precision: Double = 0.1.pow(numberOfDigits)
 
-    fun calculate(startP: Float, endP: Float): CalculationResult {
-        var mid: Float = (endP + startP) / 2
+    fun calculate(startP: Double, endP: Double): CalculationResult {
+        var mid: Double = (endP + startP) / 2
         var start = startP
         var end = endP
         var calculations = 0
@@ -28,9 +28,3 @@ class Bisection(
         return CalculationResult(mid, calculations, milliseconds)
     }
 }
-
-data class CalculationResult(
-    val result: Float,
-    val calculations: Int,
-    val time: Long
-)
