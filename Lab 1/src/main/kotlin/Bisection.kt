@@ -4,7 +4,7 @@ import kotlin.system.measureTimeMillis
 
 class Bisection(
     var function: (x: Double) -> Double,
-    private var numberOfDigits: Int
+    numberOfDigits: Int
 ) {
     private val precision: Double = 0.1.pow(numberOfDigits + 1)
 

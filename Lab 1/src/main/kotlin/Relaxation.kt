@@ -6,13 +6,13 @@ import kotlin.system.measureTimeMillis
 class Relaxation(
     val function: (x: Double) -> Double,
     val derivative: (x: Double) -> Double,
-    val numberOfDigits: Int
+    numberOfDigits: Int
 ) {
     private val precision: Double = 0.1.pow(numberOfDigits + 1)
 
     fun calculate(start: Double, end: Double): CalculationResult {
         var calculations = 0
-        var x = 0.0
+        var x: Double
         var xi = 0.0
         val milliseconds = measureTimeMillis {
             var max = derivative(start)

@@ -5,7 +5,7 @@ import kotlin.system.measureTimeMillis
 class Newton(
     val function: (x: Double) -> Double,
     val derivative: (x: Double) -> Double,
-    private val numberOfDigits: Int
+    numberOfDigits: Int
 ) {
     private val precision: Double = 0.1.pow(numberOfDigits + 1)
 
