@@ -10,6 +10,10 @@ class Main {
             testBisection(::function, 5, -10.0, 3.0)
             testNewton(::trigonometricFunction, ::trigonometricDerivative, 12, 0.3)
             testRelaxation(::trigonometricFunction, ::trigonometricDerivative, 12, -0.9, 1.0)
+
+            testBisection(::noAnswer, 8, -10.0, 4.0)
+            testNewton(::noAnswer, ::noAnswerDerivative, 8, 3.0)
+            testRelaxation(::noAnswer, ::noAnswerDerivative, 8, -1.0, 2.0)
         }
 
         private fun function(x: Double) = x.pow(3) - 8
@@ -17,6 +21,9 @@ class Main {
 
         private fun trigonometricFunction(x: Double) = sin(x) + 0.5
         private fun trigonometricDerivative(x: Double) = cos(x)
+
+        private fun noAnswer(x: Double) = x * x + 4
+        private fun noAnswerDerivative(x: Double) = 2 * x
 
         private fun printResult(
             calculationResult: CalculationResult,
@@ -34,7 +41,10 @@ class Main {
                             "In " + colorYellow + calculationResult.time + colorReset + " milliseconds.\n"
                 )
             else
-                print("\nAn error occurred while calculating using $method method.\n")
+                print("\nAn error occurred while calculating using " +
+                        colorGreen + method + colorReset + " method.\n" +
+                        "Wasted " + colorYellow + calculationResult.time + colorReset +
+                        " milliseconds on it! Absolutely barbaric!\n")
         }
 
         private fun testBisection(

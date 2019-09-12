@@ -15,6 +15,10 @@ class Newton(
         var xi = x - function(x) / derivative(x)
         val milliseconds = measureTimeMillis {
             while ((xi - x).absoluteValue > precision) {
+                if (calculations == MAX_CALCULATIONS) {
+                    calculations = -1
+                    break
+                }
                 if (derivative(x).absoluteValue <= precision) {
                     if ((xi - x).absoluteValue > precision)
                         calculations = -1

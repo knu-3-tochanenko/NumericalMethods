@@ -7,3 +7,5 @@ data class CalculationResult(
         return calculations > 0
     }
 }
+
+const val MAX_CALCULATIONS = 100_000

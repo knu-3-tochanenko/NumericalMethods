@@ -15,6 +15,10 @@ class Bisection(
         var calculations = 0
         val milliseconds = measureTimeMillis {
             while ((end - start).absoluteValue > precision) {
+                if (calculations == MAX_CALCULATIONS) {
+                    calculations = -1
+                    break
+                }
                 calculations++
                 mid = (end + start) / 2
                 if (function(mid).absoluteValue <= precision)
