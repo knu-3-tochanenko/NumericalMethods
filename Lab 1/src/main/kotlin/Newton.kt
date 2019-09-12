@@ -7,7 +7,7 @@ class Newton(
     val derivative: (x: Double) -> Double,
     private val numberOfDigits: Int
 ) {
-    private val precision: Double = 0.1.pow(numberOfDigits)
+    private val precision: Double = 0.1.pow(numberOfDigits + 1)
 
     fun calculate(start: Double): CalculationResult {
         var x = start
@@ -25,6 +25,9 @@ class Newton(
                 xi = x - function(x) / derivative(x)
             }
         }
+        // If method was unable to find result
+        if (function(x).absoluteValue > precision)
+            calculations = -1
         return CalculationResult(x, calculations, milliseconds)
     }
 }

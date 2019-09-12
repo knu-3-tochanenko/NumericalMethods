@@ -6,7 +6,7 @@ class Bisection(
     var function: (x: Double) -> Double,
     private var numberOfDigits: Int
 ) {
-    private val precision: Double = 0.1.pow(numberOfDigits)
+    private val precision: Double = 0.1.pow(numberOfDigits + 1)
 
     fun calculate(startP: Double, endP: Double): CalculationResult {
         var mid: Double = (endP + startP) / 2
@@ -19,12 +19,18 @@ class Bisection(
                 mid = (end + start) / 2
                 if (function(mid).absoluteValue <= precision)
                     break
-                if (function(mid) > 0)
+                if (function(mid) * function(start) < 0)
                     end = mid
-                else
+                else if (function(mid) * function(end) < 0)
                     start = mid
+                else {
+                    calculations = -1
+                    break
+                }
             }
         }
+        if (function(mid).absoluteValue > precision)
+            calculations = -1
         return CalculationResult(mid, calculations, milliseconds)
     }
 }
