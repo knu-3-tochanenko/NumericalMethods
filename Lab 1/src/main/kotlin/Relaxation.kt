@@ -27,19 +27,19 @@ class Relaxation(
             }
             val lambda = 2 / (min + max)
             x = (start + end) / 2
-            xi = x - lambda * function(x) * sign(derivative(x))
+            xi = x - lambda * function(x)
             while ((xi - x).absoluteValue > precision) {
                 if (calculations == MAX_CALCULATIONS) {
                     calculations = -1
                     break
                 }
                 x = xi
-                xi = x - lambda * function(x) * sign(derivative(x))
+                xi = x - lambda * function(x)
                 calculations++
             }
         }
         // If method was unable to find result
-        if (xi.isNaN())
+        if (xi.isNaN() || xi.isInfinite())
             calculations = -1
         return CalculationResult(xi, calculations, milliseconds)
     }
