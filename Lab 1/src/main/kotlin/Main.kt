@@ -11,9 +11,9 @@ class Main {
             testNewton(::trigonometricFunction, ::trigonometricDerivative, 12, 0.3)
             testRelaxation(::trigonometricFunction, ::trigonometricDerivative, 12, -0.9, 1.0)
 
-            testBisection(::noAnswer, 8, -10.0, 4.0)
-            testNewton(::noAnswer, ::noAnswerDerivative, 8, 3.0)
-            testRelaxation(::noAnswer, ::noAnswerDerivative, 8, -1.0, 2.0)
+            testBisection(::noAnswer, 4, 0.9, 3.0)
+            testNewton(::noAnswer, ::noAnswerDerivative, 4, 3.0)
+            testRelaxation(::noAnswer, ::noAnswerDerivative, 4, 0.9, 3.0)
         }
 
         private fun function(x: Double) = x.pow(3) - 8

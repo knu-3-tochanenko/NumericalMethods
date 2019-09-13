@@ -39,7 +39,7 @@ class Relaxation(
             }
         }
         // If method was unable to find result
-        if (function(xi).absoluteValue > precision || xi.isNaN())
+        if (xi.isNaN())
             calculations = -1
         return CalculationResult(xi, calculations, milliseconds)
     }

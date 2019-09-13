@@ -33,8 +33,6 @@ class Bisection(
                 }
             }
         }
-        if (function(mid).absoluteValue > precision)
-            calculations = -1
         return CalculationResult(mid, calculations, milliseconds)
     }
 }

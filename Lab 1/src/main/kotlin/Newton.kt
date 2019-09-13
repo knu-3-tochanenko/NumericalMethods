@@ -30,7 +30,7 @@ class Newton(
             }
         }
         // If method was unable to find result
-        if (function(x).absoluteValue > precision)
+        if (x.isNaN())
             calculations = -1
         return CalculationResult(x, calculations, milliseconds)
     }
