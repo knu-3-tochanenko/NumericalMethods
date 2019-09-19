@@ -1,6 +1,6 @@
 object Gauss {
     fun solve(matrix: Matrix): Array<Double> {
-        val res: Array<Double> = Array(matrix.elements) {0.0}
+        val res: Array<Double> = Array(matrix.elements) { 0.0 }
         var iterations = 0
         for (i in 0 until matrix.elements - 1) {
             iterations++
@@ -15,7 +15,7 @@ object Gauss {
             res[i] = matrix[i, matrix.elements]
             for (j in i + 1 until matrix.elements) {
                 if (j != i)
-                    res[i] -=  matrix[i, j] * res[j]
+                    res[i] -= matrix[i, j] * res[j]
             }
             res[i] /= matrix[i, i]
         }

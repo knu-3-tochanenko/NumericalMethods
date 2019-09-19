@@ -34,7 +34,7 @@ class Matrix(
         for (i in 0 until elements) {
             var nextLine = arrayOf<Double>()
             for (j in 0..elements)
-                nextLine += random.nextDouble() * if (random.nextInt() % 2 == 0) -1 else 1
+                nextLine += random.nextDouble() * 10 * if (random.nextInt() % 2 == 0) -1 else 1
             matrix += nextLine
         }
     }
