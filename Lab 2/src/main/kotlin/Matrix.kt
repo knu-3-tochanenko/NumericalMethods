@@ -1,10 +1,15 @@
 import java.lang.IndexOutOfBoundsException
 import java.util.*
 
+const val ANSI_GREEN = "\u001B[32m"
+const val ANSI_YELLOW = "\u001B[33m"
+const val ANSI_RESET = "\u001B[0m"
+const val ANSI_CYAN = "\u001B[36m"
+
 class Matrix(
-    val elements: Int,
-    var matrix: Array<Array<Double>>
+    val elements: Int
 ) {
+    lateinit var matrix: Array<Array<Double>>
     operator fun get(i: Int, j: Int): Double {
         checkBoundaries(i, j)
         return matrix[i][j]
@@ -16,14 +21,14 @@ class Matrix(
     }
 
     private fun checkBoundaries(i: Int, j: Int) {
-        if (i >= matrix.size || j >= matrix.size)
+        if (i >= matrix.size || j > matrix.size)
             throw IndexOutOfBoundsException(
                 "Well. You can't do that. Index is out of boundaries.\n" +
                         "Got $i and $j, but maximum size is ${matrix.size}"
             )
     }
 
-    fun generateRandom(elements: Int) {
+    fun generateRandom() {
         matrix = arrayOf<Array<Double>>()
         val random = Random(System.currentTimeMillis())
         for (i in 0 until elements) {
@@ -34,8 +39,8 @@ class Matrix(
         }
     }
 
-    fun generateOk(elements: Int) {
-        generateRandom(elements)
+    fun generateOk() {
+        generateRandom()
         var sum: Double
         for (i in 0 until elements) {
             sum = 0.0
@@ -45,7 +50,7 @@ class Matrix(
         }
     }
 
-    fun generateNotOk(elements: Int) {
+    fun generateNotOk() {
         matrix = arrayOf<Array<Double>>()
         for (i in 0 until elements) {
             var nextLine = arrayOf<Double>()
@@ -67,10 +72,11 @@ class Matrix(
     }
 }
 
-fun println(matrix: Matrix) {
+fun print(matrix: Matrix) {
     for (i in 0 until matrix.elements) {
-        for (j in 0..matrix.elements)
+        print("\n")
+        for (j in 0 until matrix.elements)
             print("%.3f\t".format(matrix[i, j]))
-        println("---\t%.3f\n".format(matrix[i, matrix.elements]))
+        print("$ANSI_YELLOW---\t%.3f$ANSI_RESET".format(matrix[i, matrix.elements]))
     }
 }
