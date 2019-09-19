@@ -2,15 +2,15 @@ import java.lang.IndexOutOfBoundsException
 import java.util.*
 
 class Matrix(
-    val matrix: Array<Array<Double>>,
-    val vector: Array<Double>
+    val elements: Int,
+    var matrix: Array<Array<Double>>
 ) {
-    fun get(i: Int, j: Int): Double {
+    operator fun get(i: Int, j: Int): Double {
         checkBoundaries(i, j)
         return matrix[i][j]
     }
 
-    fun set(i: Int, j: Int, value: Double) {
+    operator fun set(i: Int, j: Int, value: Double) {
         checkBoundaries(i, j)
         matrix[i][j] = value
     }
@@ -24,10 +24,14 @@ class Matrix(
     }
 
     fun generateRandom(elements: Int) {
+        matrix = arrayOf<Array<Double>>()
         val random = Random(System.currentTimeMillis())
-        for (i in 0 until elements)
-            for (j in 0 until elements)
-                matrix[i][j] = random.nextDouble()
+        for (i in 0 until elements) {
+            var nextLine = arrayOf<Double>()
+            for (j in 0..elements)
+                nextLine += random.nextDouble() * if (random.nextInt() % 2 == 0) -1 else 1
+            matrix += nextLine
+        }
     }
 
     fun generateOk(elements: Int) {
@@ -35,16 +39,38 @@ class Matrix(
         var sum: Double
         for (i in 0 until elements) {
             sum = 0.0
-            for (j in 0 until elements)
+            for (j in 0..elements)
                 sum += matrix[i][j]
             matrix[i][i] += sum
         }
     }
 
     fun generateNotOk(elements: Int) {
-        for (i in 0 until elements)
-            for (j in 0 until elements)
+        matrix = arrayOf<Array<Double>>()
+        for (i in 0 until elements) {
+            var nextLine = arrayOf<Double>()
+            for (j in 0..elements)
             // i + j + 1 = (i + 1) + (j + 1) - 1 because numeration starts from 0
-                matrix[i][j] = 1.0 / (i + j + 1)
+                nextLine += 1.0 / (i + j + 1)
+            matrix += nextLine
+        }
+    }
+
+    fun regenerateWithResult(vararg x: Double) {
+        if (x.size < elements)
+            throw IllegalArgumentException("Size of x vector is ${x.size}, but matrix size is $elements")
+        for (i in 0 until elements) {
+            matrix[i][elements] = 0.0
+            for (j in 0 until elements)
+                matrix[i][elements] += x[j] * matrix[i][j]
+        }
+    }
+}
+
+fun println(matrix: Matrix) {
+    for (i in 0 until matrix.elements) {
+        for (j in 0..matrix.elements)
+            print("%.3f\t".format(matrix[i, j]))
+        println("---\t%.3f\n".format(matrix[i, matrix.elements]))
     }
 }
