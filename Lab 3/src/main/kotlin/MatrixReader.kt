@@ -5,7 +5,6 @@ infix fun Matrix.getFrom(name: String) {
     file.forEachLine {
         val (startString, endString) = it.split(" ")
         val (start, end) = Pair(startString.toInt(), endString.toInt())
-        this[start, end] = 1.0
         this[end, start] = 1.0
     }
     normalize()

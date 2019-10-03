@@ -9,6 +9,7 @@ class Main {
             println(rank.getRank(1))
             println(rank.getRank(2))
             println(rank.getRank(3))
+            println(rank.getRank(4))
         }
     }
 }
