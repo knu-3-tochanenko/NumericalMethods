@@ -3,9 +3,10 @@ import java.io.File
 infix fun Matrix.getFrom(name: String) {
     val file = File(name)
     file.forEachLine {
-        val (startString, endString) = it.split(" ")
-        val (start, end) = Pair(startString.toInt(), endString.toInt())
-        this[end, start] = 1.0
+        val numbers = it.split(" ")
+        if (numbers.isNotEmpty())
+            for (i in 1 until numbers.size)
+                this[numbers[i].toInt(), numbers[0].toInt()] = 1.0
     }
     normalize()
 }

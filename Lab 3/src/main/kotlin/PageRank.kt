@@ -1,3 +1,6 @@
+import kotlin.math.pow
+import kotlin.math.round
+
 class PageRank(
     elements: Int,
     file: String
@@ -6,7 +9,6 @@ class PageRank(
     private var x = DoubleArray(elements) { 1.0 / elements }
 
     init {
-        println("WOW")
         Thread.sleep(2000)
         val A = Matrix(elements)
         A getFrom file
@@ -22,18 +24,47 @@ class PageRank(
         return x[index]
     }
 
+    private fun getMax(): Int {
+        var max = 0
+        for (i in x.indices)
+            if (x[max] < x[i])
+                max = i
+        return max
+    }
+
     private fun generateRank(matrix: Matrix) {
         var vector = DoubleArray(matrix.elements) { x[it] }
         x = matrix * vector
-        while (norm(x, vector) > PRECISION) {
+        val precision = 0.1.pow(PRECISION)
+        while (norm(x, vector) > precision) {
             vector = x
             x = matrix * vector
         }
-        println("Calculation was successful")
     }
 
     private fun norm(v1: DoubleArray, v2: DoubleArray): Double {
-        return 0.0
+        var norm = 0.0
+        for (i in v1.indices)
+            norm += (v1[i] - v2[i]).pow(2)
+        return norm
+    }
+
+    fun printRanks() {
+        for ((index, value) in x.withIndex()) {
+            println(
+                "PR of page No." + ANSI_YELLOW
+                        + "$index" + ANSI_RESET + " is "
+                        + ANSI_GREEN + value.round(PRECISION) + ANSI_RESET
+            )
+        }
+    }
+
+    fun printMax() {
+        println(
+            ANSI_GREEN + "Page with biggest PR is " + ANSI_YELLOW + getMax()
+                    + ANSI_RESET + " with the PR value of "
+                    + ANSI_GREEN + x[getMax()].round(PRECISION) + ANSI_RESET
+        )
     }
 }
 
@@ -81,4 +112,10 @@ private operator fun Matrix.times(vector: DoubleArray): DoubleArray {
         for (j in 0 until this.elements)
             res[i] += this[i, j] * vector[j]
     return res
+}
+
+fun Double.round(decimals: Int): Double {
+    var multiplier = 1.0
+    repeat(decimals) { multiplier *= 10 }
+    return round(this * multiplier) / multiplier
 }

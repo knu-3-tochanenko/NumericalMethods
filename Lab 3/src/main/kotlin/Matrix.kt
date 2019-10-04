@@ -30,4 +30,12 @@ class Matrix {
             for (j in 0 until this.elements)
                 this[i, j] = matrix[i][j]
     }
+
+    fun print() {
+        for (i in 0 until elements) {
+            for (j in 0 until elements)
+                print("${this[i, j]} ")
+            println()
+        }
+    }
 }
