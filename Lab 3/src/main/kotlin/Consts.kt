@@ -1,4 +1,4 @@
-const val PRECISION = 6
+const val PRECISION = 8
 const val ELEMENTS = 4
 const val ANSI_GREEN = "\u001B[32m"
 const val ANSI_YELLOW = "\u001B[33m"
