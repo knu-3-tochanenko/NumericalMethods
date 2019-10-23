@@ -1,12 +1,11 @@
 import kotlin.math.pow
 
-class Jacobi {
+class Seidel {
     companion object {
         @JvmStatic
         fun solve(matrix: Matrix, b: DoubleArray): DoubleArray {
-            val N = matrix.getDiagonal()
-            var M = Matrix(matrix - N)
-            N.invert()
+            val N = matrix.getLowerInverted()
+            val M = (-1.0) * matrix.getUpperTriangle()
 
             val precision = 0.1.pow(PRECISION)
             var x = DoubleArray(b.size) { 0.0 }
@@ -14,10 +13,7 @@ class Jacobi {
 
             do {
                 x = xNew
-//                xNew = N * M * x - N * b      // Teacher's way
-//                xNew = N * (b + M * x)          // Book's way
-//                xNew = N * M * x + N * b
-                xNew = N * (b + (-1.0 * M) * x)
+                xNew = N * (b + M * x)
             } while (norm(xNew, x) > precision)
 
             return xNew
