@@ -120,7 +120,7 @@ class Matrix(
             return false
     }
 
-    fun getUpperTriangle() : Matrix {
+    fun getUpperTriangle(): Matrix {
         val res = Matrix(elements)
         for (i in 0 until (elements - 1))
             for (j in (i + 1) until elements)
@@ -128,7 +128,7 @@ class Matrix(
         return res
     }
 
-    fun getLowerTriangle() : Matrix {
+    fun getLowerTriangle(): Matrix {
         val res = Matrix(elements)
         for (i in 1 until elements)
             for (j in 0 until i)

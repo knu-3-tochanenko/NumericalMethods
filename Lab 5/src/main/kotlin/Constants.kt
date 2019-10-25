@@ -1,4 +1,5 @@
 const val PRECISION = 3
+const val RANGE = 100.0
 
 const val ANSI_GREEN = "\u001B[32m"
 const val ANSI_YELLOW = "\u001B[33m"

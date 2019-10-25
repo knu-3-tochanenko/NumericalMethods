@@ -10,6 +10,16 @@ fun Matrix.generateRandom() {
             this.matrix[i][j] = random.nextDouble() * 10
 }
 
+fun Matrix.generateSymmetric() {
+    val random = Random(System.currentTimeMillis())
+    val max = 2 * RANGE
+    for (i in 0 until elements)
+        for (j in 0..i) {
+            matrix[i][j] = random.nextDouble() % max - max / 2
+            matrix[j][i] = matrix[i][j]
+        }
+}
+
 fun Matrix.rotationMatrix(row: Int, column: Int): Matrix {
     val result = Matrix(elements)
     result.generateI()
@@ -72,7 +82,7 @@ fun Matrix.regenerateWithResult(x: DoubleArray, b: DoubleArray) {
     }
 }
 
-fun Matrix.getLowerInverted() : Matrix {
+fun Matrix.getLowerInverted(): Matrix {
     val lower = getLowerTriangle() + getDiagonal()
     val res = Matrix(elements)
 
