@@ -20,10 +20,8 @@ class Solver {
                 M[i, i] = 0.0
 
             val (row, column) = maxCoordinate(M)
-
             if (row == column)
                 break
-
             val J = S.rotationMatrix(row, column)
             S = J * S * J.transpose()
             vectorMatrix *= J

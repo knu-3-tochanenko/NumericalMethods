@@ -10,9 +10,12 @@ class Main {
 
             val solver = Solver()
             solver.solve(matrix)
+
+            print("\n\nEigen values :${ANSI_CYAN}")
             print(solver.values)
-            print("\n-----------\n")
+            print("\n\n${ANSI_RESET}Eigen vectors :${ANSI_CYAN}")
             print(solver.vectors)
+            print(ANSI_RESET)
         }
     }
 }
