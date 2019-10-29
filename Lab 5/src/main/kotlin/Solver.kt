@@ -13,17 +13,20 @@ class Solver {
         vectorMatrix.generateI()
 
         val precision = .1.pow(PRECISION)
-        while (norm(S) > precision) {
+        while (true) {
             M = Matrix(S)
 
             for (i in 0 until M.elements)
                 M[i, i] = 0.0
 
-            val (row, column) = maxCoordinate(M)
+            var (row, column) = maxCoordinate(M)
             if (row == column)
                 break
+            if (S[row, column].absoluteValue < precision)
+                break
+
             val J = S.rotationMatrix(row, column)
-            S = J * S * J.transpose()
+            S = J.transpose() * J * S
             vectorMatrix *= J
         }
 

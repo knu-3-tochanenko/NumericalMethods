@@ -24,13 +24,13 @@ fun Matrix.rotationMatrix(row: Int, column: Int): Matrix {
     val result = Matrix(elements)
     result.generateI()
     val precision = .1.pow(PRECISION)
-    val sub = (this[row, row] - this[column, column]) / (2 * this[row, column])
+    val sub = (this[column, column] - this[row, row]) / (2.0 * this[row, column])
     val t = if (sub > precision)
         -sub + sqrt(sub * sub + 1.0)
     else
         -sub - sqrt(sub * sub + 1.0)
     val c = 1.0 / sqrt(t * t + 1.0)
-    val s = c * t
+    val s = t / sqrt(t * t + 1.0)
 
     result[row, row] = c
     result[column, column] = c
