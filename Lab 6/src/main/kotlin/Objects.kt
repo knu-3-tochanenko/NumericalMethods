@@ -1,9 +1,9 @@
 data class Line(
     var x: Double,
     var y: Double,
-    var b: Double
+    var c: Double
 ) {
-    constructor(line: Line) : this(line.x, line.y, line.b)
+    constructor(line: Line) : this(line.x, line.y, line.c)
 }
 
 data class Dot(

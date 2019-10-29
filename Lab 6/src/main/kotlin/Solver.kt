@@ -1,4 +1,5 @@
 import kotlin.math.pow
+import kotlin.math.sqrt
 
 class Solver(
     var firstLine: Line,
@@ -19,7 +20,8 @@ class Solver(
         do {
             dots.add(Dot(dot))
 
-            dot = nextDot
+            dot.x = nextDot.x
+            dot.y = nextDot.y
             nextDot.x = calcX(
                 dot,
                 if (isFirst) firstLine else secondLine
@@ -29,8 +31,7 @@ class Solver(
                 if (isFirst) firstLine else secondLine
             )
 
-            println("x = ${dot.x}, y = ${dot.y}")
-
+            isFirst = !isFirst
         } while (norm(dot, nextDot) > PRECISION)
 
         res = Dot(dot)
@@ -38,18 +39,18 @@ class Solver(
 
     private fun calcX(dot: Dot, line: Line): Double {
         return (-1.0) *
-                (dot.x * line.x + dot.y * line.y) / (line.x.pow(2) + line.y.pow(2)) *
+                (dot.x * line.x + dot.y * line.y + line.c) / (line.x.pow(2) + line.y.pow(2)) *
                 line.x + dot.x
     }
 
     private fun calcY(dot: Dot, line: Line): Double {
         return (-1.0) *
-                (dot.x * line.x + dot.y * line.y) / (line.x.pow(2) + line.y.pow(2)) *
+                (dot.x * line.x + dot.y * line.y + line.c) / (line.x.pow(2) + line.y.pow(2)) *
                 line.y + dot.y
     }
 
     private fun norm(firstDot: Dot, secondDot: Dot): Double {
-        return (firstDot.x * secondDot.x + firstDot.y * secondDot.y)
+        return sqrt((secondDot.x - firstDot.x).pow(2) + (secondDot.y - firstDot.y).pow(2))
     }
 
     fun getRes(): Dot {
