@@ -18,7 +18,6 @@ class Solver(
         var isFirst = true
 
         do {
-            dots.add(Dot(dot))
 
             dot.x = nextDot.x
             dot.y = nextDot.y
@@ -31,6 +30,7 @@ class Solver(
                 if (isFirst) firstLine else secondLine
             )
 
+            dots.add(Dot(nextDot))
             isFirst = !isFirst
         } while (norm(dot, nextDot) > PRECISION)
 

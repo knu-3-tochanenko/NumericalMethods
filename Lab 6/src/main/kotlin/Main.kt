@@ -5,10 +5,14 @@ class Main {
             println("Love u to the end of the kus`mus` and back <3")
             println("i write this")
 
+            val firstLine = Line(1.0, -1.0, 0.0)
+            val secondLine = Line(6.0, 3.0, -18.0)
+            val startPoint = Dot(3.0, 5.0)
+
             val solver = Solver(
-                Line(1.0, -1.0, 0.0),
-                Line(6.0, 3.0, -18.0),
-                Dot(3.0, 5.0)
+                firstLine,
+                secondLine,
+                startPoint
             )
 
             val res = solver.getRes()
@@ -18,6 +22,8 @@ class Main {
             for ((index, value) in dots.withIndex()) {
                 println("DOT #${index} : x = ${value.x}, y = ${value.y}")
             }
+
+            Visualizer.draw(firstLine, secondLine, res, dots)
         }
     }
 }

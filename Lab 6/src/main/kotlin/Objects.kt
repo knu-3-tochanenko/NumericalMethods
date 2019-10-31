@@ -4,6 +4,10 @@ data class Line(
     var c: Double
 ) {
     constructor(line: Line) : this(line.x, line.y, line.c)
+
+    fun getY(a: Double): Double {
+        return (-c - a * x) / y
+    }
 }
 
 data class Dot(
