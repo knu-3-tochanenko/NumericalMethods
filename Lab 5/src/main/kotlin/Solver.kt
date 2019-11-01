@@ -26,7 +26,12 @@ class Solver {
                 break
 
             val J = S.rotationMatrix(row, column)
-            S = J.transpose() * J * S
+            S = J.transpose() * S * J
+
+            print(S)
+            println()
+            println()
+
             vectorMatrix *= J
         }
 

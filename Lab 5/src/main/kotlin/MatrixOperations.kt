@@ -15,7 +15,7 @@ fun Matrix.generateSymmetric() {
     val max = 2 * RANGE
     for (i in 0 until elements)
         for (j in 0..i) {
-            matrix[i][j] = random.nextDouble() % max - max / 2
+            matrix[i][j] = random.nextDouble() * max
             matrix[j][i] = matrix[i][j]
         }
 }
