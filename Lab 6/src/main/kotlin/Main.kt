@@ -5,9 +5,9 @@ class Main {
             println("Love u to the end of the kus`mus` and back <3")
             println("i write this")
 
-            val firstLine = Line(1.0, -1.0, 0.0)
-            val secondLine = Line(6.0, 3.0, -18.0)
-            val startPoint = Dot(3.0, 5.0)
+            val firstLine = Line(7.0, -10.0, 5.0)
+            val secondLine = Line(2.0, -5.0, -1.0)
+            val startPoint = Dot(10.0, -5.0)
 
             val solver = Solver(
                 firstLine,

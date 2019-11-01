@@ -3,10 +3,6 @@ import kotlin.math.max
 import org.knowm.xchart.SwingWrapper
 import org.knowm.xchart.XYChartBuilder
 
-
-
-
-
 class Visualizer {
     companion object {
         @JvmStatic
@@ -28,7 +24,7 @@ class Visualizer {
                 XYChartBuilder()
                     .width(800)
                     .height(600)
-                    .title("CHART")
+                    .title("Computing ...")
                     .xAxisTitle("X")
                     .yAxisTitle("Y")
                     .build()
@@ -53,18 +49,21 @@ class Visualizer {
                 drawnX,
                 drawnY
             )
-
-            // Show it
+            
             var sw = SwingWrapper(chart)
                 sw.displayChart()
 
             for (i in 1 until dots.size) {
-                Thread.sleep(1000)
+                Thread.sleep(SPEED)
                 drawnX.add(dots[i].x)
                 drawnY.add(dots[i].y)
                 chart.updateXYSeries("Dots", drawnX, drawnY, null)
                 sw.repaintChart()
             }
+
+            val format = "%." + NUMBER_OF_DIGITS.toString() + "f"
+
+            chart.title = "DONE x = ${format.format(res.x)}, y = ${format.format(res.y)}"
         }
     }
 }
