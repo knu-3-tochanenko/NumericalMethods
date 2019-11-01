@@ -49,7 +49,7 @@ class Visualizer {
                 drawnX,
                 drawnY
             )
-            
+
             var sw = SwingWrapper(chart)
                 sw.displayChart()
 
