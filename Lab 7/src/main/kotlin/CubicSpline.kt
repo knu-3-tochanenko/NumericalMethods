@@ -1,18 +1,18 @@
 import org.knowm.xchart.SwingWrapper
 import org.knowm.xchart.XYChartBuilder
 
-class CubicSpline(val points: Array<Dot>) {
-    private val differenceTable = Array(3) { DoubleArray(points.size) { 0.0 } }
+class CubicSpline(val dots: Array<Dot>) {
+    private val differenceTable = Array(3) { DoubleArray(dots.size) { 0.0 } }
 
     private val result: Array<DoubleArray> by lazy {
-        val size = points.size
+        val size = dots.size
         val res = Array(4) { DoubleArray(size) { 0.0 } }
         val h = DoubleArray(size) { 0.0 }
 
-        res[0][0] = points[0].y
+        res[0][0] = dots[0].y
         for (i in 1 until size) {
-            h[i] = points[i].x - points[i - 1].x
-            res[0][i] = points[i].y
+            h[i] = dots[i].x - dots[i - 1].x
+            res[0][i] = dots[i].y
         }
 
         val c = getC(size, h)
@@ -37,7 +37,7 @@ class CubicSpline(val points: Array<Dot>) {
 
         for (i in range) {
             x.add(i)
-            if (points[j].x < i && j + 1 != points.size)
+            if (dots[j].x < i && j + 1 != dots.size)
                 j++
             y.add(getValue(i, j))
         }
@@ -66,9 +66,9 @@ class CubicSpline(val points: Array<Dot>) {
     fun getValue(x: Double, i: Int): Double {
         var res = 0.0
         res += result[0][i]
-        res += result[1][i] * (x - points[i].x)
-        res += result[2][i] * pow(x - points[i].x, 2) / 2.0
-        res += result[3][i] * pow(x - points[i].x, 3) / 6.0
+        res += result[1][i] * (x - dots[i].x)
+        res += result[2][i] * pow(x - dots[i].x, 2) / 2.0
+        res += result[3][i] * pow(x - dots[i].x, 3) / 6.0
         return res
     }
 
@@ -108,12 +108,12 @@ class CubicSpline(val points: Array<Dot>) {
 
     private fun getDifferences(size: Int) {
         for (i in 0 until size) {
-            differenceTable[0][i] = points[i].y
+            differenceTable[0][i] = dots[i].y
         }
         for (i in 1 until 3) {
             for (j in 0 until size - i)
                 differenceTable[i][j] =
-                    (differenceTable[i - 1][j + 1] - differenceTable[i - 1][j]) / (points[j + 1].x - points[j].x)
+                    (differenceTable[i - 1][j + 1] - differenceTable[i - 1][j]) / (dots[j + 1].x - dots[j].x)
         }
     }
 }
