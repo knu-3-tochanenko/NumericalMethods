@@ -16,3 +16,15 @@ data class Dot(
 ) {
     constructor(dot: Dot) : this(dot.x, dot.y)
 }
+
+fun Array<Dot>.split(): Pair<DoubleArray, DoubleArray> {
+    val xArray = DoubleArray(this.size) { 0.0 }
+    val yArray = DoubleArray(this.size) { 0.0 }
+
+    for (i in this.indices) {
+        xArray[i] = this[i].x
+        yArray[i] = this[i].y
+    }
+
+    return xArray to yArray
+}

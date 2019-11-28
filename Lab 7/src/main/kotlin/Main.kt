@@ -3,6 +3,7 @@ class Main {
         @JvmStatic
         fun main(args: Array<String>) {
             println("It works!")
+            Evenly.run()
         }
     }
 }
