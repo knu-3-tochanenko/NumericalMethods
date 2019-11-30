@@ -1,11 +1,11 @@
 # NumericalMethods
-![Intellij IDEA](https://img.shields.io/badge/Intellij_IDEA-2019.3-fe305e?style=flat&logo=intellij%20idea)
-![Kotlin 100%](https://img.shields.io/badge/Kotlin-100%25-f18e33?style=flat&logo=kotlin&logoColor=white)
-![Gradle](https://img.shields.io/badge/gradle-5.2.1-%2302303A?style=flat&logo=gradle)
+[![IntelliJ IDEA](https://img.shields.io/badge/Intellij_IDEA-2019.3-fe305e?style=flat&logo=intellij%20idea)](https://www.jetbrains.com/idea/)
+[![Kotlin 100%](https://img.shields.io/badge/Kotlin-100%25-f18e33?style=flat&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
+[![Gradle](https://img.shields.io/badge/gradle-5.2.1-%2302303A?style=flat&logo=gradle)](https://gradle.org/)
 
-All projects are made using Kotlin & Gradle in Intellij IDEA. To run any of it, just sync Gradle project and run `application` task.
+All projects are made using Kotlin & Gradle in IntelliJ IDEA. To run any of it, just sync Gradle project and run `application` task.
 
-### [Lab 1 - Equation solving algorithms](Lab%201)
+### [Lab 1 - Equation solving algorithms](Lab%201/src/main/kotlin)
 Solve equation using [Bisection](Lab%201/src/main/kotlin/Bisection.kt), [Newton](Lab%201/src/main/kotlin/Newton.kt) and [Relaxation](Lab%201/src/main/kotlin/Relaxation.kt) methods. Note that these methods find only one result!
 
 To test any of these methods you need to use these functions:
@@ -27,7 +27,7 @@ testNewton(::function, ::derivative, 12, 0.3)
 testRelaxation(::function, ::derivative, 12, -0.9, 1.0)
 ```
 
-### [Lab 2 - System of aquations solving algorithms](Lab%202)
+### [Lab 2 - System of equations solving algorithms](Lab%202/src/main/kotlin)
 Solve system of equations of n variables which is represented using NxN matrix. Implement [Gauss](Lab%202/src/main/kotlin/Gauss.kt), [Jacobi](Lab%202/src/main/kotlin/Jacobi.kt) and [Seidel](Lab%202/src/main/kotlin/Seidel.kt) algorithms.
 
 Actually `testMatrix(matrix: Matrix, name: String)` method will test all three of these methods. You just need to generate matrices.
@@ -49,7 +49,7 @@ notok.generateNotOk()
 testMatrix(notok, "NOT OK")
 ```
 
-### [Lab 3 - PageRank (Simplified)](Lab%203)
+### [Lab 3 - PageRank (Simplified)](Lab%203/src/main/kotlin)
 Implement simplified [PageRank](Lab%203/src/main/kotlin/PageRank.kt) algirithm.
 
 To test algorithm just use `PageRank` class, which takes number of elements and data file location as constructor parameters. `ELEMENTS` is total number of pages. You can change it in  [`Consts.kt`](Lab%203/src/main/kotlin/Consts.kt) file.
@@ -68,7 +68,7 @@ data.dat contains `ELEMENTS` number of rows. The first number in each row is an 
 3 0 2
 ```
 
-### [Lab 4 - System of aquations solving algorithms using Matrix operations](Lab%204)
+### [Lab 4 - System of equations solving algorithms using Matrix operations](Lab%204/src/main/kotlin)
 Solve system of equations of n variables which is represented using NxN matrix. Implement [Gauss](Lab%204/src/main/kotlin/Gauss.kt), [Jacobi](Lab%204/src/main/kotlin/Jacobi.kt) and [Seidel](Lab%204/src/main/kotlin/Seidel.kt) algorithms. Use matrix operations.
 
 First of all you need to generate matrix and b vector:
@@ -81,7 +81,7 @@ matrix.generateOk()
 matrix.regenerateWithResult(x, b)
 ```
 
-You can also set your own matrix insted of random diagonally dominant matrix:
+You can also set your own matrix instead of random diagonally dominant matrix:
 
 ```kotlin
 matrix.setElements(
@@ -99,7 +99,7 @@ Jacobi.solve(matrix, b)
 Seidel.solve(matrix, b)
 ```
 
-### [Lab 5 - Eigen values and eigen vectors of matrix](Lab%205)
+### [Lab 5 - Eigen values and eigen vectors of matrix](Lab%205/src/main/kotlin)
 Find eigen values and eigen vectors of matrix.
 
 First of all you need to generate symmetric matrix:
@@ -118,7 +118,7 @@ print(solver.values)
 print(solver.vectors)
 ```
 
-### [Lab 6 - Visualization of Kaczmarz algorithm](Lab%206)
+### [Lab 6 - Visualization of Kaczmarz algorithm](Lab%206/src/main/kotlin)
 Visualize Kaczmarz algorithm in 2D space.
 
 First of all you need to create two lines and starting point:
@@ -151,5 +151,13 @@ Visualizer.draw(firstLine, secondLine, res, dots)
 Example result:
 ![Example](Lab%206/example.png)
 
-### [Lab 7 - interpolation](Lab%207)
-I have no clue what is going here. :confused:
+### [Lab 7 - interpolation](Lab%207/src/main/kotlin)
+Implement interpolation using [Lagrange](Lab%207/src/main/kotlin/Lagrange.kt), [Newton](Lab%207/src/main/kotlin/NewtonPolynomial.kt) and [Cubic Spline](Lab%207/src/main/kotlin/CubicSpline.kt) methods.
+
+To test you need to specify your function in [Solver](Lab%207/src/main/kotlin/Solver.kt) class:
+
+```kotlin
+fun f(x: Double) = x * x * sin(2 * x)
+```
+
+To run just call `Evenly.run()` for evenly split segment and `Chebyshev.run()` using Chebyshev polynomials. Ranges are hardcoded, however you can change it in [Evenly](Lab%207/src/main/kotlin/Solver.kt) and [Chebyshev](Lab%207/src/main/kotlin/Chebyshev.kt) classes
